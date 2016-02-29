@@ -8,7 +8,6 @@
 **/
 package graph;
 
-
 public class Edge{
 
 	int source;

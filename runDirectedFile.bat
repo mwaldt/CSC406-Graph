@@ -1,3 +1,3 @@
-java -cp classes TesterDirected > outDirected.txt
+java -cp classes graph.TesterDirected > outDirected.txt
 
 pause 10000
