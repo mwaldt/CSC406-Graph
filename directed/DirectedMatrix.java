@@ -6,8 +6,9 @@
 * Assigned: 1/26/16
 * Due: 2/15/16
 **/
+package graph;
 
-
+import graph.*;
 import java.util.*;
 
 public abstract class DirectedMatrix extends DirectedGraph{
