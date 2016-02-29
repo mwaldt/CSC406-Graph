@@ -30,11 +30,13 @@ public abstract class UndirectedMatrix extends UndirectedGraph{
 	// Create edge for Matrix
 	void createEdge(Edge e){
 		adjacencyMatrix[e.getSource()][e.getDestination()] = e.getWeight();
+		adjacencyMatrix[e.getDestination()][e.getSource()] = e.getWeight();
 	}
 
 	// Remove edge for Matrix
 	void clearEdge(Edge e){
 		adjacencyMatrix[e.getSource()][e.getDestination()] = 0;
+		adjacencyMatrix[e.getDestination()][e.getSource()] = 0;
 	}
 
 	// Produces an ArrayList of verticies adjacent to input vertex i

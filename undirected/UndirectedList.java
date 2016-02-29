@@ -32,11 +32,13 @@ public abstract class UndirectedList extends UndirectedGraph{
 	// Create edge for List
 	void createEdge(Edge e){
 		adjacencyList[e.getSource()].add(e);
+		adjacencyList[e.getDestination()].add(e);
 	}
 
 	// Remove edge for List
 	void clearEdge(Edge e){
 		adjacencyList[e.getSource()].remove(e);
+		adjacencyList[e.getDestination()].remove(e);
 	}
 
 	// Produces an array of verticies adjacent to input vertex i
