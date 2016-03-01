@@ -68,7 +68,7 @@ public abstract class TesterBase{
 	void listAdjacentVerticies(Graph g){
 		System.out.println("Printing the list of all adjacent verties to each vertice in the graph.");
 		for(int i = 0; i < g.numVertices(); i++){
-			System.out.print("Vertex  " + (i) + ": ");
+			System.out.print("Vertex " + (i) + ": ");
 			System.out.println(g.adjacentVerticies(i).toString() + "\n");
 		}
 		System.out.println();
