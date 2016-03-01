@@ -26,19 +26,27 @@ public abstract class UndirectedList extends UndirectedGraph{
 
 	// Returns True if and edge exists, else false
 	boolean existsEdge(Edge e){
-		return adjacencyList[e.getSource()].contains(e);
+		/*
+		if(adjacencyList[e.getSource()].contains(e)){
+			System.out.println("EDGE EXISTS AS E IN LIST[e.src]");
+		}else if(adjacencyList[e.getDestination()].contains(e.flip())){
+			System.out.println("EDGE EXISTS AS E IN LIST[e.dest]");
+		}/**/
+		return 
+		adjacencyList[e.getSource()].contains(e);
+		// ||adjacencyList[e.getDestination()].contains(e.flip());
 	}
 
 	// Create edge for List
 	void createEdge(Edge e){
 		adjacencyList[e.getSource()].add(e);
-		adjacencyList[e.getDestination()].add(e);
+		adjacencyList[e.getDestination()].add(e.flip());
 	}
 
 	// Remove edge for List
 	void clearEdge(Edge e){
 		adjacencyList[e.getSource()].remove(e);
-		adjacencyList[e.getDestination()].remove(e);
+		adjacencyList[e.getDestination()].remove(e.flip());
 	}
 
 	// Produces an array of verticies adjacent to input vertex i
@@ -53,7 +61,7 @@ public abstract class UndirectedList extends UndirectedGraph{
 
 	@Override
 	public String toString(){
-		String out = "String representation for Directed List\n";
+		String out = "String representation for Directed List\r\n";
 		ListIterator<Edge> iterator;
 		for(int i = 0; i < adjacencyList.length; i++){
 			iterator = adjacencyList[i].listIterator();
@@ -61,7 +69,7 @@ public abstract class UndirectedList extends UndirectedGraph{
 			while(iterator.hasNext()){
 				out +=	iterator.next().getDestination() +" ";
 			}
-			out += "\n";
+			out += "\r\n";
 		}
 		return out;
 	}

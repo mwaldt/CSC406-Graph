@@ -64,7 +64,7 @@ public class TesterUndirected extends TesterBase{
 		System.out.println("Printing the in degrees of each verticie in a graph");
 		for(int i = 0; i < g.numVertices(); i++){
 			System.out.print("Vertex  " + (i) + ": ");
-			System.out.print(g.adjacentVertsCount(i) + "\n");
+			System.out.println(g.adjacentVertsCount(i) + "\n");
 		}
 		System.out.println();
 	}

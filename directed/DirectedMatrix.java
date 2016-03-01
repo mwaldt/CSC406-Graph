@@ -49,12 +49,12 @@ public abstract class DirectedMatrix extends DirectedGraph{
 	//Returns Directed Matrix as a String
 	@Override
 	public String toString(){
-		String out = "String representation for Directed Materix\n";
+		String out = "String representation for Directed Materix\r\n";
 		for(int i = 0; i < adjacencyMatrix.length; i++){
 			for(int j = 0; j < adjacencyMatrix[i].length; j++){
 				out += adjacencyMatrix[i][j] + "  ";
 			}
-			out += "\n";
+			out += "\r\n";
 		}
 		return out;
 	}

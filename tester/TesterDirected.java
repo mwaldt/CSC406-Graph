@@ -66,7 +66,7 @@ public class TesterDirected extends TesterBase{
 		System.out.println("Printing the in degrees of each verticie in a graph");
 		for(int i = 0; i < g.numVertices(); i++){
 			System.out.print("Vertex  " + (i) + ": ");
-			System.out.print(g.inDegree(i) + "\n");
+			System.out.println(g.inDegree(i) + "\n");
 		}
 		System.out.println();
 	}
@@ -75,7 +75,7 @@ public class TesterDirected extends TesterBase{
 		System.out.println("Printing the out degrees of each verticie in a graph");
 		for(int i = 0; i < g.numVertices(); i++){
 			System.out.print("Vertex  " + (i) + ": ");
-			System.out.print(g.outDegree(i) + "\n");
+			System.out.println(g.outDegree(i) + "\n");
 		}
 		System.out.println();
 	}

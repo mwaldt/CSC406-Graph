@@ -50,7 +50,7 @@ public abstract class DirectedList extends DirectedGraph{
 
 	@Override
 	public String toString(){
-		String out = "String representation for Directed List\n";
+		String out = "String representation for Directed List\r\n";
 		ListIterator<Edge> iterator;
 		for(int i = 0; i < adjacencyList.length; i++){
 			iterator = adjacencyList[i].listIterator();
@@ -58,7 +58,7 @@ public abstract class DirectedList extends DirectedGraph{
 			while(iterator.hasNext()){
 				out +=	iterator.next().getDestination() +" ";
 			}
-			out += "\n";
+			out += "\r\n";
 		}
 		return out;
 	}

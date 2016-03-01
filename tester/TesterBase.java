@@ -31,8 +31,11 @@ public abstract class TesterBase{
 	void allTestsOnGraph(Graph g){
 		System.out.println();
 		printTheGraph(g);
+		System.out.println();
 		getDegrees(g);
+		System.out.println();
 		listAdjacentVerticies(g);
+		System.out.println();
 		removeEdgesTest(g, new Edge(5, 4, 5));
 		System.out.println("Testing for edge that does exist.");
 		testAdjacent(g, new Edge(4,5));
@@ -66,7 +69,7 @@ public abstract class TesterBase{
 		System.out.println("Printing the list of all adjacent verties to each vertice in the graph.");
 		for(int i = 0; i < g.numVertices(); i++){
 			System.out.print("Vertex  " + (i) + ": ");
-			System.out.print(g.adjacentVerticies(i).toString() + "\n");
+			System.out.println(g.adjacentVerticies(i).toString() + "\n");
 		}
 		System.out.println();
 	}

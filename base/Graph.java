@@ -46,7 +46,8 @@ public abstract class Graph{
 	// Input edge class object
 	void putEdge(Edge e){
 		if(existsEdge(e)){
-			System.out.println("Edge already exists, no duplicates.");
+			System.out.println("Edge " + e.toString() +" already exists, no duplicates.");
+			//System.out.println(e.toString() + " " + e.getWeight());
 		}else{
 			insertEdge(e);
 			edgeCount++;

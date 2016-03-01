@@ -44,8 +44,38 @@ public class Edge{
 		return "(" + source + ", " + destination + ")";
 	}
 
+	
+	public boolean equals(Object e){
+		if(this == e){
+			//System.out.println("This equals e");
+			return true;	
+		}
+		if(e == null) {
+			//System.out.println("e equals null");
+			return false;
+		}
+		if(getClass() != e.getClass()){
+			//System.out.println("Class mismatch");
+			return false;
+		}
+		final Edge other = (Edge) e;
+		//System.out.println("THIS: " +this.toString() + " " + this.getWeight());
+		//System.out.println("E: " +other.toString() + " " + other.getWeight());
+		if(source == other.getSource() && destination == other.getDestination()){
+			return true;
+		}
+		return false;
+		//return ((this.source == e.getSource()) && (this.destination == e.getDestination()));
+	}
+
+/*
 	public boolean equals(Edge e){
 		return ((this.source == e.getSource()) && (this.destination == e.getDestination()));
+	}
+/**/
+
+	public Edge flip(){
+		return new Edge(destination, source, weight);
 	}
 	
 }
