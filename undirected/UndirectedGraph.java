@@ -26,7 +26,11 @@ public abstract class UndirectedGraph extends Graph{
 	// Specific implementation based on type of graph
 	void insertEdge(Edge e){
 		incrementDegrees(e);
-		createEdge(e);
+		if(e.getSource() < e.getDestination()){
+			createEdge(e);
+		}else{
+			createEdge(e.flip());
+		}
 	}
 
 	// Create edge for Matrix/list
@@ -37,7 +41,11 @@ public abstract class UndirectedGraph extends Graph{
 	// Specific implementation based on type of graph
 	void deleteEdge(Edge e){
 		decrementDegrees(e);
-		clearEdge(e);
+		if(e.getSource() < e.getDestination()){
+			clearEdge(e);
+		}else{
+			clearEdge(e.flip());
+		}
 	}
 
 	// Create edge for Matrix/list
