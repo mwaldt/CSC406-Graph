@@ -18,6 +18,8 @@ public abstract class DirectedMatrix extends DirectedGraph{
 	// Sets up the Matrix
 	void setUpDataType(){
 		adjacencyMatrix = new int[vertexCount][vertexCount];
+		inDegree = new int[vertexCount];
+		outDegree = new int[vertexCount];
 	}
 
 	// Returns True if and edge exists, else false

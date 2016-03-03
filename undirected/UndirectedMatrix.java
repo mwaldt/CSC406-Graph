@@ -13,18 +13,25 @@ import graph.*;
 
 import java.util.*;
 
+/*
+Potential improvement if time is available:
+Implement the matrix so only the top half is used.
+Adjacent Verts will get odd, needs to check all values before itself
+for matches and then after itself.
+/**/
 public abstract class UndirectedMatrix extends UndirectedGraph{
 
 	int[][] adjacencyMatrix;
 
 	// Sets up the Matrix
 	void setUpDataType(){
+		adjacentVerts = new int[vertexCount];
 		adjacencyMatrix = new int[vertexCount][vertexCount];
 	}
 
 	// Returns True if and edge exists, else false
 	boolean existsEdge(Edge e){
-		return !(adjacencyMatrix[e.getSource()][e.getDestination()] == 0);
+		return (adjacencyMatrix[e.getSource()][e.getDestination()] != 0);
 	}
 
 	// Create edge for Matrix
@@ -41,13 +48,18 @@ public abstract class UndirectedMatrix extends UndirectedGraph{
 
 	// Produces an ArrayList of verticies adjacent to input vertex i
 	ArrayList<Integer> adjacentVerticies(int i){
-		ArrayList<Integer> adjacentVerts = new ArrayList<Integer>();
-		for(int j = 0; j < adjacencyMatrix[i].length; j++){
-			if(adjacencyMatrix[i][j] != 0){
-				adjacentVerts.add(j);
+		if(rangeCheck(i)){
+			ArrayList<Integer> adjacentVerts = new ArrayList<Integer>();
+			for(int j = 0; j < adjacencyMatrix[i].length; j++){
+				if(adjacencyMatrix[i][j] != 0){
+					adjacentVerts.add(j);
+				}
 			}
+			return adjacentVerts;
+		}else{
+			System.out.println("Vertice value provided outside of the bounds of the graph, must be between 0 and " + vertexCount);
+			return new ArrayList<Integer>();
 		}
-		return adjacentVerts;
 	}
 
 	//Returns Directed Matrix as a String

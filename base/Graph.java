@@ -45,14 +45,18 @@ public abstract class Graph{
 	// Adds an edge e to the graph if it doesn't already exist.
 	// Input edge class object
 	void putEdge(Edge e){
-		if(existsEdge(e)){
-			System.out.println("Edge " + e.toString() +" already exists, no duplicates.");
-			//System.out.println(e.toString() + " " + e.getWeight());
+		if(rangeCheck(e.getSource()) && rangeCheck(e.getDestination())){
+			if(existsEdge(e)){
+				System.out.println("Edge " + e.toString() +" already exists, no duplicates.");
+			}else{
+				insertEdge(e);
+				edgeCount++;
+				System.out.println("Edge " + e.toString() + " inserted successfully.");
+			}
 		}else{
-			insertEdge(e);
-			edgeCount++;
-			System.out.println("Edge " + e.toString() + " inserted successfully.");
+			System.out.println("Edge contains a value that is out of bounds of the graph, can not be added");
 		}
+
 	}
 
 	// Adds an edge e to the graph if it doesn't already exist.
@@ -74,12 +78,16 @@ public abstract class Graph{
 	// Removes an edge e from the graph if it exists.
 	// Input edge class object
 	void removeEdge(Edge e){
-		if(existsEdge(e)){
-			deleteEdge(e);
-			edgeCount--;
-			System.out.println("Edge " + e.toString() + " removed successfully.");
+		if(rangeCheck(e.getSource()) && rangeCheck(e.getDestination())){
+			if(existsEdge(e)){
+				deleteEdge(e);
+				edgeCount--;
+				System.out.println("Edge " + e.toString() + " removed successfully.");
+			}else {
+				System.out.println("Edge does not exist.");
+			}
 		}else{
-			System.out.println("Edge does not exist.");
+			System.out.println("Edge contains a value that is out of bounds of the graph, can not be removed");
 		}
 	}
 
@@ -107,12 +115,46 @@ public abstract class Graph{
 		return existsEdge(e);
 	}
 
-	//Creates the graph from input file
-	//File name is supplied as parameter.
-	abstract void readFromFile(String filename);
-
-	boolean rangeCheck(Edge e){
-		return (e.getSource() < 0 && e.getSource() > vertexCount && e.getDestination() < 0 && e.getDestination() > vertexCount);
+	boolean rangeCheck(int i){
+		return (i >= 0 && i < vertexCount);
 	}
+	
+	//Method used in reading of a file
+	//Splits an input string into the src, dest, and wght of an edge.
+	int[] splitInputString(String s){
+		String[] str = s.split(" ");
+		int[] ints = new int[3];
+		if(str.length == 2){
+			ints[2] = 1;
+		}
+		for(int i = 0; i < str.length; i++){
+			ints[i] = Integer.parseInt(str[i]);
+		}
+		return ints;
+	}
+
+	//Reads input from a file and constructs a Undirected graph based on the input
+	//Paramater filename is the desired file to read
+	void readFromFile(String filename){
+		try{
+			Scanner scan = new Scanner(new File(filename));
+			//scan.useDelimiter("\n");
+			int[] ints = new int[3];
+			vertexCount = Integer.parseInt(scan.nextLine());
+			edgeCount = 0;
+			setUpDataType();
+			while(scan.hasNext()){
+				ints = splitInputString(scan.nextLine());
+				putEdge(ints[0], ints[1], ints[2]);
+			}
+		}catch(FileNotFoundException ex){
+			System.out.println(ex.toString());
+		}
+	}//End Method
+
+	// Creates and instantiates the Matrix/List
+	// Implemented in sub classes
+	abstract void setUpDataType();
+
 
 }//End Class

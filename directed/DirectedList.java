@@ -18,6 +18,8 @@ public abstract class DirectedList extends DirectedGraph{
 	// Sets up the Matrix
 	void setUpDataType(){
 		adjacencyList = new LinkedList[vertexCount];
+		inDegree = new int[vertexCount];
+		outDegree = new int[vertexCount];
 		for(int i = 0; i < adjacencyList.length; i++){
 			adjacencyList[i] = new LinkedList<Edge>();
 		}
