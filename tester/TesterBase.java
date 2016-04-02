@@ -36,9 +36,9 @@ public abstract class TesterBase{
 		System.out.println();
 		listAdjacentVerticies(g);
 		System.out.println();
-		removeEdgesTest(g, new Edge(5, 4, 5));
+		removeEdgesTest(g, new Edge(0, 3, 5));
 		System.out.println("Testing for edge that does exist.");
-		testAdjacent(g, new Edge(4,5));
+		testAdjacent(g, new Edge(0,5));
 		System.out.println("Testing for edge that does not exist.");
 		testAdjacent(g, new Edge(1,4));
 	}

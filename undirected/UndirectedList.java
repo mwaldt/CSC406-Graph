@@ -27,26 +27,23 @@ public abstract class UndirectedList extends UndirectedGraph{
 
 	// Returns True if and edge exists, else false
 	boolean existsEdge(Edge e){
-		return 
-		adjacencyList[e.getSource()].contains(e) || adjacencyList[e.getDestination()].contains(e.flip());
+		if(rangeCheck(e.getSource()) && rangeCheck(e.getDestination())){
+			return 
+			adjacencyList[e.getSource()].contains(e) || adjacencyList[e.getDestination()].contains(e.flip());
+		}else{
+			System.out.println("Edge contains a value that is out of bounds of the graph, must be between 0 and " + vertexCount);
+			return false;
+		}
 	}
 
 	// Create edge for List
 	void createEdge(Edge e){
-		if(e.getSource() < e.getDestination()){
-			adjacencyList[e.getSource()].add(e);
-		}else{
-			adjacencyList[e.getDestination()].add(e.flip());
-		}
+		adjacencyList[e.getSource()].add(e);
 	}
 
 	// Remove edge for List
 	void clearEdge(Edge e){
-		if(e.getSource() < e.getDestination()){
-			adjacencyList[e.getSource()].remove(e);
-		}else{
-			adjacencyList[e.getDestination()].remove(e.flip());
-		}
+		adjacencyList[e.getSource()].remove(e);
 	}
 
 	// Produces an array of verticies adjacent to input vertex i
