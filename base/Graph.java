@@ -105,6 +105,8 @@ public abstract class Graph{
 	// Implemented in sub classes
 	abstract ArrayList<Integer> adjacentVerticies(int i);
 
+	
+
 	// Checks to see if an edge exists from vertex i to vertex j
 	boolean areAdjacent(int i, int j){
 		return existsEdge(i, j);
