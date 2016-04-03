@@ -29,7 +29,7 @@ public abstract class DirectedTopoSort{
 	void initSortData(DirectedGraph g){
 		graph = g;
 		sorted = new int[g.numVertices()];
-		indegree = g.indegree;
+		indegree = g.inDegrees();
 		tsortQueue = new PriorityQueue<Integer>();
 	}
 

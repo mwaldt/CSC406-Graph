@@ -70,4 +70,12 @@ public abstract class DirectedGraph extends Graph{
 		return outDegree[i];
 	}
 
+	int[] inDegrees(){
+		return inDegree;
+	}
+	
+	int[] outDegrees(){
+		return outDegree;
+	}
+
 }
