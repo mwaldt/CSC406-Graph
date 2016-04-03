@@ -13,5 +13,8 @@ completed for class on 2/11/16
 
 Undirected Graph:
 This is the second phase of the project, includes weighted and unweighted Adjaceny Matrix and Adjacency List representations of undirected graphs
-still a work in progress
-Due 3/3/16
+completed for class on 3/3/16
+
+Algorithms:
+This is the third phase of the project. This part includes code for Union Find, Kruskal's MST, Kahn's and Tarjan's algorithms for Topological sort.
+Due 4/6/16
