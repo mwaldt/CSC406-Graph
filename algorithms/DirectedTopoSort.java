@@ -22,13 +22,13 @@ import graph.*;
 public abstract class DirectedTopoSort{
 
 	DirectedGraph graph;
-	PriorityQueue<Integer> tsortQueue;
+	//List<Integer> ordered;
 	int sorted[];
 
 	void initSortData(DirectedGraph g){
 		graph = g;
 		sorted = new int[g.numVertices()];
-		tsortQueue = new PriorityQueue<Integer>();
+		//ordered = new ArrayList<Integer>();
 	}
 
 

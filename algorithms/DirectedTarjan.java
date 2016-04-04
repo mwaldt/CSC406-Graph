@@ -22,20 +22,17 @@ import graph.*;
 public class DirectedTarjan extends DirectedTopoSort{
 
 	boolean used[];
-	List<Integer> ordered;
 	int count;
 
 
 	void topSort(){
 		count = graph.numVertices();
 		used = new boolean[count];
-		ordered = new ArrayList<Integer>();
 		for(int i = 0; i< graph.numVertices(); i++){
 			if(!used[i]){
 				dfs(i);
 			}
 		}
-		Collections.reverse(ordered);
 	}
 
 	void dfs(int x){

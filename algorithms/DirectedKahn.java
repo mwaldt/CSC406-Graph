@@ -22,6 +22,12 @@ import graph.*;
 public class DirectedKahn extends DirectedTopoSort{
 
 	int indegree[];
+	PriorityQueue<Integer> tsortQueue;
+
+	public DirectedKahn(DirectedGraph g){
+		initSortData(g);
+		tsortQueue = new PriorityQueue<Integer>();
+	}
 
 	void topSort(){
 		indegree = graph.inDegrees();
@@ -32,7 +38,6 @@ public class DirectedKahn extends DirectedTopoSort{
 			tsortQueue.poll();
 			sorted[position] = front;
 			position++;
-			//ArrayList<Integer> v = graph.adjacentVerticies();
 			for(int i : graph.adjacentVerticies(front)){
 				indegree[i]--;
 			}
