@@ -33,14 +33,16 @@ public class DirectedKahn extends DirectedTopoSort{
 		indegree = graph.inDegrees();
 		checkGraph();
 		int front, position = 0;
+		
 		while(!tsortQueue.isEmpty()){
-			front = tsortQueue.peek();
-			tsortQueue.poll();
+			front = tsortQueue.poll();
 			sorted[position] = front;
+			indegree[front] = -1;
 			position++;
 			for(int i : graph.adjacentVerticies(front)){
 				indegree[i]--;
 			}
+			checkGraph();
 		}
 	}
 	

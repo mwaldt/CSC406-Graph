@@ -31,5 +31,12 @@ public abstract class DirectedTopoSort{
 		//ordered = new ArrayList<Integer>();
 	}
 
+	void print(){
+		for(int i = 0; i < graph.numVertices() - 1; i++ ){
+			System.out.printf("%d ", sorted[i]);
+		}
+		System.out.printf("%d", sorted[graph.numVertices()-1]);
+	}
+
 
 }//end class

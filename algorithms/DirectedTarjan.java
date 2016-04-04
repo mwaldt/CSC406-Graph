@@ -24,10 +24,13 @@ public class DirectedTarjan extends DirectedTopoSort{
 	boolean used[];
 	int count;
 
-
-	void topSort(){
+	public DirectedTarjan(DirectedGraph g){
+		initSortData(g);
 		count = graph.numVertices();
 		used = new boolean[count];
+	}
+
+	void topSort(){
 		for(int i = 0; i< graph.numVertices(); i++){
 			if(!used[i]){
 				dfs(i);
