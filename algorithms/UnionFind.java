@@ -46,6 +46,10 @@ public class UnionFind{
 		return count;
 	}
 
+	int parent(int i){
+		return parent[i];
+	}
+
 	//Returns if x and y are connected
 	boolean connected(int x, int y){
 		return find(x) == find(y);
@@ -55,18 +59,26 @@ public class UnionFind{
 	void union(int x, int y){
 		int rootx = find(x);
 		int rooty = find(y);
-		if(rootx == rooty) return;
-		hook(rootx, rooty);
+		//System.out.println("root x: " + rootx);
+		//System.out.println("root y: " + rooty);
+		if(rootx == rooty && rootx >= 0 ){
+			//System.out.println("Already connected");
+		}else{
+			hook(rootx, rooty);
+		}
 	}
 
 	//Attaches nodes x and y
 	//The one with more subnodes will become the root.
 	void hook(int x, int y){
+		//System.out.println("Hooking " + x + " " + y);
 		if(x > y){
-			y += x;
+			//System.out.println("x > y");
+			parent[y] += parent[x];
 			parent[x] = y;
 		}else if(x <= y){
-			x += y;
+			//System.out.println("x <= y");
+			parent[x] += parent[y];
 			parent[y] = x;
 		}
 		count--;

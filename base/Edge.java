@@ -52,7 +52,7 @@ public class Edge implements Comparable{
 		if(this.source == e.getSource())
 			return 0;
 		else
-			return this.source > e.getSource() ? 1 : -1;
+			return this.weight > e.getWeight() ? 1 : -1;
 	}
 
 	

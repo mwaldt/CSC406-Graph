@@ -26,16 +26,22 @@ public class KruskalMST{
 
         UnionFind uf = new UnionFind(g.numVertices());
 
+        //System.out.println("Created uf");
+
         while(!pq.isEmpty() && mst.size() < g.numVertices() -1){
             Edge e = pq.poll();
+            //System.out.println("Polled edge " + e.toString());
             if(!uf.connected(e.getSource(), e.getDestination())){
+                //System.out.println(e.toString() + " not connected");
+                //System.out.println("Node " + e.getSource() +": " + uf.parent(e.getSource()));
+                //System.out.println("Node " + e.getDestination() +": " + uf.parent(e.getDestination()));
                 uf.union(e.getSource(), e.getDestination());
                 mst.add(e);
                 weight +=e.getWeight();
             }
         }
         //Check if optimal
-        //assert check(g);
+        assert check(g);
     }
 
     double getWeight(){
