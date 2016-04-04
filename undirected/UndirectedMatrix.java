@@ -70,6 +70,26 @@ public abstract class UndirectedMatrix extends UndirectedGraph{
 		}
 	}
 
+	// Produces an ArrayList of edges starting from input vertex i
+	ArrayList<Edge> getEdges(int i){
+		ArrayList<Edge> adjEdges = new ArrayList<Edge>();
+		for(int j = 0; j < adjacencyMatrix.length; j++){
+			if(adjacencyMatrix[i][j] > 0){
+				adjEdges.add(new Edge(i, j, adjacencyMatrix[i][j]));
+			}
+		}
+		return adjEdges;
+	}
+
+	// Produces an ArrayList of edges starting from input vertex i
+	ArrayList<Edge> getAllEdges(){
+		ArrayList<Edge> adjEdges = new ArrayList<Edge>();
+		for(int j = 0; j < adjacencyMatrix.length; j++){
+			adjEdges.addAll(getEdges(j));
+		}
+		return adjEdges;
+	}
+
 	//Returns Directed Matrix as a String
 	@Override
 	public String toString(){

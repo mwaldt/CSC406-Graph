@@ -69,12 +69,13 @@ public class UnionFind{
 			x += y;
 			parent[y] = x;
 		}
+		count--;
 	}
 
 	//Make sure the node is in the bounds of the set
 	void validate(int x){
 		int n = parent.length;
-		if (x < 0 || x >= n){
+		if (x >= n){
 			throw new IndexOutOfBoundsException ("index " + x + " is not between 0 and " + (n-1));
 		}
 	}

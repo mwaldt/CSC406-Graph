@@ -8,7 +8,7 @@
 **/
 package graph;
 
-public class Edge{
+public class Edge implements Comparable{
 
 	int source;
 	int destination;
@@ -42,6 +42,17 @@ public class Edge{
 	
 	public String toString(){
 		return "(" + source + ", " + destination + ")";
+	}
+
+	public int compareTo(Object o){
+		return compareTo((Edge) o);
+	}
+
+	public int compareTo(Edge e){
+		if(this.source == e.getSource())
+			return 0;
+		else
+			return this.source > e.getSource() ? 1 : -1;
 	}
 
 	

@@ -14,14 +14,14 @@ import java.util.*;
 
 public abstract class UndirectedList extends UndirectedGraph{
 
-	LinkedList<Edge>[] adjacencyList;
+	ArrayList<Edge>[] adjacencyList;
 
 	// Sets up the Matrix
 	void setUpDataType(){
-		adjacencyList = new LinkedList[vertexCount];
+		adjacencyList = new ArrayList[vertexCount];
 		adjacentVerts = new int[vertexCount];
 		for(int i = 0; i < adjacencyList.length; i++){
-			adjacencyList[i] = new LinkedList<Edge>();
+			adjacencyList[i] = new ArrayList<Edge>();
 		}
 	}
 
@@ -65,6 +65,20 @@ public abstract class UndirectedList extends UndirectedGraph{
 			return new ArrayList<Integer>();
 		}
 
+	}
+
+	//Returns Edges associated with index i
+	ArrayList<Edge> getEdges(int i){
+		return adjacencyList[i];
+	}
+
+	//Returns Edges associated with index i
+	ArrayList<Edge> getAllEdges(){
+		ArrayList<Edge> adjEdges = new ArrayList<Edge>();
+		for(int j = 0; j < adjacencyList.length; j++){
+			adjEdges.addAll(getEdges(j));
+		}
+		return adjEdges;
 	}
 
 	@Override

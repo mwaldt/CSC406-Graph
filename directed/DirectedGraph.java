@@ -35,14 +35,6 @@ public abstract class DirectedGraph extends Graph{
 	// Specific implementation based on type of graph
 	abstract void createEdge(Edge e);
 
-	// Produces an array of edge starting from input vertex i
-	// Implemented in sub classes
-	abstract ArrayList<Edge> getEdges(int i);
-
-	// Produces an array of edge starting from input vertex i
-	// Implemented in sub classes
-	abstract ArrayList<Edge> getAllEdges();
-
 
 	// Handles decrementing of edge count,
 	// Specific implementation based on type of graph

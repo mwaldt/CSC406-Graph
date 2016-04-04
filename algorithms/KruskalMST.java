@@ -17,16 +17,15 @@ public class KruskalMST{
     PriorityQueue<Edge> mst;
 
 
-    public KruskalMST(DirectedGraph g){
+    public KruskalMST(UndirectedGraph g){
         mst = new PriorityQueue<Edge>();
         PriorityQueue<Edge> pq = new PriorityQueue<Edge>();
-        for(int i = 0; i < g.numVertices(); i++ ){
-            for(Edge e: g.getEdges(i)){
-                pq.add(e);
-            }
+        for(Edge e: g.getAllEdges()){
+            pq.add(e);
         }
 
         UnionFind uf = new UnionFind(g.numVertices());
+
         while(!pq.isEmpty() && mst.size() < g.numVertices() -1){
             Edge e = pq.poll();
             if(!uf.connected(e.getSource(), e.getDestination())){
@@ -35,9 +34,8 @@ public class KruskalMST{
                 weight +=e.getWeight();
             }
         }
-
         //Check if optimal
-        assert check(g);
+        //assert check(g);
     }
 
     double getWeight(){
@@ -48,7 +46,7 @@ public class KruskalMST{
         return mst;
     }
 
-    boolean check(DirectedGraph g){
+    boolean check(UndirectedGraph g){
         double total = 0.0;
         for(Edge e : edges()){
             total += e.getWeight();
@@ -91,5 +89,14 @@ public class KruskalMST{
             }
         }
         return true;
+    }
+
+    void printResults(){
+        System.out.println("Minimal spanning tree: ");
+        for(Edge e : mst){
+            System.out.print(e.toString() + " ");
+        }
+        System.out.println("Total weight: " + weight);
+        
     }
 }

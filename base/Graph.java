@@ -158,5 +158,13 @@ public abstract class Graph{
 	// Implemented in sub classes
 	abstract void setUpDataType();
 
+	// Produces an array of edge starting from input vertex i
+	// Implemented in sub classes
+	abstract ArrayList<Edge> getEdges(int i);
+
+	// Produces an array of edge starting from input vertex i
+	// Implemented in sub classes
+	abstract ArrayList<Edge> getAllEdges();
+
 
 }//End Class
