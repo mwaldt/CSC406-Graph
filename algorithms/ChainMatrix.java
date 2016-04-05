@@ -26,7 +26,6 @@ public class ChainMatrix{
 	public ChainMatrix(int p[]){
 		int n = p.length -1;
 		m = new int[n][n];
-		//s = new int[n][n];
 
 		for(int ii = 1; ii < n; ii++){
 			for(int i = 0; i < n-ii; i++){
@@ -37,7 +36,6 @@ public class ChainMatrix{
 					if(q < m[i][j]){
 						m[i][j] = q;
 						m[j][i] = k;
-						//int s[i][j] = k;
 					}
 				}
 			}
