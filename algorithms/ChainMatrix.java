@@ -42,6 +42,22 @@ public class ChainMatrix{
 				}
 			}
 		}
+	}
 
+	void printOut(){
+		for(int i = 0; i< m.length; i++){
+			for(int j = 0; j < m.length; j++){
+				System.out.print("|" + buffer(m[i][j]) + "|");
+			}
+			System.out.println();
+		}
+	}
+
+	String buffer(int x){
+		String s = "" + x;
+		for(int i = s.length(); i < 7; i++){
+			s = s + " ";
+		}
+		return s;
 	}
 }//end class
