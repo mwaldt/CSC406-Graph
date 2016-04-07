@@ -22,21 +22,36 @@ import graph.*;
 public abstract class DirectedTopoSort{
 
 	DirectedGraph graph;
-	//List<Integer> ordered;
 	int sorted[];
+	boolean looping;
+	int indegree[];
 
 	void initSortData(DirectedGraph g){
 		graph = g;
 		sorted = new int[g.numVertices()];
-		//ordered = new ArrayList<Integer>();
+		looping = false;
+		indegree = graph.inDegrees();
+		/*
+		for(int i = 0; i < g.numVertices(); i++){
+			sorted[i] = -1;		//sentinal values for detecting loops
+		}/**/
 	}
 
 	void print(){
-		for(int i = 0; i < graph.numVertices() - 1; i++ ){
-			System.out.printf("%d ", sorted[i]);
+		for(int i = 0; i < graph.numVertices()-1; i ++){
+			if(sorted[i] == sorted[i+1]){
+				looping = true;
+				i = graph.numVertices();
+			}
 		}
-		System.out.printf("%d", sorted[graph.numVertices()-1]);
+		if(looping == true){
+			System.out.printf("Loop detected in graph, can not have a topological sort");
+		}else{
+			for(int i = 0; i < graph.numVertices() - 1; i++ ){
+				System.out.printf("%d ", sorted[i]);
+			}
+			System.out.printf("%d", sorted[graph.numVertices()-1]);
+		}
 	}
-
 
 }//end class

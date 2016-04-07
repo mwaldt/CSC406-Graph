@@ -21,7 +21,7 @@ import graph.*;
 
 public class DirectedKahn extends DirectedTopoSort{
 
-	int indegree[];
+	
 	PriorityQueue<Integer> tsortQueue;
 
 	public DirectedKahn(DirectedGraph g){
@@ -30,7 +30,7 @@ public class DirectedKahn extends DirectedTopoSort{
 	}
 
 	void topSort(){
-		indegree = graph.inDegrees();
+		
 		checkGraph();
 		int front, position = 0;
 		

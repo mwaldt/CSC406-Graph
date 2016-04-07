@@ -21,6 +21,9 @@ import graph.*;
 
 public class TesterAlg extends TesterBase{
 	
+	String negfile = "negativeW.txt";
+	String negfile2 = "negative.txt";
+
 	public TesterAlg(){
 		
 	}
@@ -42,13 +45,15 @@ public class TesterAlg extends TesterBase{
 		System.out.println("\n--------\n");
 
 		//For Topologic sorts
-		System.out.println("Creating Weighted Directed List");
+		System.out.println("Creating Weighted Directed List for positive testing");
 		WeightedDirectedList wdl = new WeightedDirectedList(weightedFileName);
 
 		System.out.println("\n--------\n");
 		
+		//POSITIVE SORTS
+
 		//Topological sort by Kahn's
-		System.out.println("Topological sort by Kahn's");
+		System.out.println("Positive Topological sort by Kahn's");
 		DirectedKahn kahn = new DirectedKahn(wdl);
 		kahn.topSort();
 		kahn.print();
@@ -56,19 +61,49 @@ public class TesterAlg extends TesterBase{
 		System.out.println("\n--------\n");
 
 		//Topological sort by Tarjans's
-		System.out.println("Topological sort by Tarjan's");
+		System.out.println("Positive Topological sort by Tarjan's");
 		DirectedTarjan tarjan = new DirectedTarjan(wdl);
 		tarjan.topSort();
 		tarjan.print();
 
 		System.out.println("\n--------\n");
 
-		//Kruskal MST
-		System.out.println("Creating Weighted Undirected List");
+		//NEGATIVE SORTS
+
+		//For Topologic sorts
+		System.out.println("Creating Weighted Directed List for negative testing");
+		WeightedDirectedList loopGraph = new WeightedDirectedList(negfile);
+
+		System.out.println("\n--------\n");
+
+		//Topological sort by Kahn's
+		System.out.println("Negative Topological sort by Kahn's");
+		kahn = new DirectedKahn(loopGraph);
+		kahn.topSort();
+		kahn.print();
+
+		System.out.println("\n--------\n");
+
+		//Topological sort by Tarjans's
+		System.out.println("Negative Topological sort by Tarjan's");
+		tarjan = new DirectedTarjan(loopGraph);
+		tarjan.topSort();
+		tarjan.print();
+
+		System.out.println("\n--------\n");
+
+		//Positive Kruskal MST
+		System.out.println("Creating Weighted Undirected List for positive Kruskal");
 		WeightedUndirectedList wudl = new WeightedUndirectedList(weightedFileName);
+
+		System.out.println("\n--------\n");
+
+
+		System.out.println("Finding a MST using Kruskal");
 		KruskalMST kruskal = new KruskalMST(wudl);
 		System.out.println();
 		kruskal.printResults();
+
 		System.out.println("\n--------\n");
 
 		//Chain Matrix Multiplaction

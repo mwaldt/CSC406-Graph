@@ -47,8 +47,9 @@ public class ChainMatrix{
 			for(int j = 0; j < m.length; j++){
 				System.out.print("|" + buffer(m[i][j]) + "|");
 			}
-			System.out.println();
+			System.out.println("");
 		}
+		System.out.println("There are " + m[0][m.length-1] +" many multiplications needed to multiply matrices of these sizes");
 	}
 
 	String buffer(int x){
