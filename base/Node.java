@@ -10,27 +10,64 @@ package graph;
 
 public class Node implements Comparable{
 
-	String value;
-	int freq;
-	Node left, right;
+	String value, huffmanCode;
+	double freq;
+	Node left, right, parent;
 
 	//Constructor for bridging nodes
-	public Node(int i, Node l, Node r){
+	public Node(double i, Node l, Node r){
 		value = " ";
+		huffmanCode = "";
 		freq = i;
 		left = l;
 		right = r;
 	}
 
 	//Constructor for nodes with value
-	public Node(String s, int i){
+	public Node(String s, double i){
 		value = s;
+		huffmanCode = "";
 		freq = i;
 	}
 
+	void setParent(Node n){
+		parent = n;
+	}
+
+	void setHuffmanCode(String s){
+		huffmanCode = s;
+	}
+
+	public String getValue(){
+		return value;
+	}
+
+	public String getHuffmanCode(){
+		return huffmanCode;
+	}
+
+	public void appeadHuffman(String s){
+		huffmanCode = parent.getHuffmanCode() + s;
+	}
+
+	public double getFreq(){
+		return freq;
+	}
+	
+	public Node getLeft(){
+		return left;
+	}
+
+	public Node getRight(){
+		return right;
+	}
+
+	public Node getParent(){
+		return parent;
+	}
 	
 	public String toString(){
-		return "(" + value + ", " + freq + ")";
+		return "(" + value + ", " + freq + ", " + huffmanCode + ")";
 	}
 
 	public int compareTo(Object o){
@@ -43,7 +80,6 @@ public class Node implements Comparable{
 		else
 			return this.freq > n.getFreq() ? 1 : -1;
 	}
-
 	
 	public boolean equals(Object e){
 		if(this == e){
@@ -60,21 +96,5 @@ public class Node implements Comparable{
 			return true;
 		}
 		return false;
-	}
-
-	public String getValue(){
-		return value;
-	}
-
-	public int getFreq(){
-		return freq;
-	}
-	
-	public Node getLeft(){
-		return left;
-	}
-
-	public Node getRight(){
-		return right;
 	}
 }

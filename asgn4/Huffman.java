@@ -38,9 +38,52 @@ public class Huffman{
 			left = nodesRemaining.poll();
 			right = nodesRemaining.poll();
 			parent = new Node((left.getFreq() + right.getFreq()), left, right);
+			left.setParent(parent);
+			right.setParent(parent);
 			nodesRemaining.add(parent);
 		}
 		head = nodesRemaining.poll();
+		System.out.println("Setting up huffman codes");
+		setHuffman(head);
+	}
+
+	void setHuffman(Node n){
+		System.out.println("Node " + n.getValue());
+		if(n.getLeft() != null){
+			if(n.equals(head)){
+				n.getLeft().setHuffmanCode("L");
+			}else{
+				n.getLeft().appeadHuffman("L");
+			}
+			setHuffman(n.getLeft());
+		}
+		if(n.getRight() != null){
+			if(n.equals(head)){
+				n.getRight().setHuffmanCode("R");;
+			}else{
+				n.getRight().appeadHuffman("R");
+			}
+			n.getRight().appeadHuffman("R");
+			setHuffman(n.getRight());
+		}
+	}
+
+	//Prints out tree
+	// 9 | 11 | 12 | 11 | 
+	void printTree(){
+		//System.out.println("Root Node | Left Node | Right Node | frequency | Huffman Code");
+		System.out.println("Print out of the huffman code");
+		printNode(head);
+	}
+
+	void printNode(Node n){
+		System.out.println(n.toString());
+		if(n.getLeft() != null){
+			printNode(n.getLeft());
+		}
+		if(n.getRight() != null){
+			printNode(n.getRight());
+		}
 	}
 
 	//Reads input from a file, stores nodes in PriorityQueue
@@ -52,7 +95,8 @@ public class Huffman{
 			nodesRemaining = new PriorityQueue<Node>();
 			while(scan.hasNext()){
 				line = scan.nextLine();
-				n = new Node(line.substring(0, 2), Integer.parseInt(line.substring(1, line.length())));
+				//System.out.println("Read in line \"" + line + "\"");
+				n = new Node(line.substring(0, 2), Double.parseDouble(line.substring(1, line.length())));
 				nodesRemaining.add(n);
 			}
 		}catch(FileNotFoundException ex){
