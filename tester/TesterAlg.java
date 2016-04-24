@@ -92,8 +92,8 @@ public class TesterAlg extends TesterBase{
 
 		System.out.println("\n--------\n");
 
-		//Positive Kruskal MST
-		System.out.println("Creating Weighted Undirected List for positive Kruskal");
+		// Kruskal MST
+		System.out.println("Creating Weighted Undirected List for Kruskal");
 		WeightedUndirectedList wudl = new WeightedUndirectedList(weightedFileName);
 
 		System.out.println("\n--------\n");
