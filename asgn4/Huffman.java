@@ -21,8 +21,8 @@ import graph.*;
 
 public class Huffman{
 
-	PriorityQueue<Node> nodesRemaining;
-	Node head;
+	PriorityQueue<HuffNode> nodesRemaining;
+	HuffNode head;
 
 	public Huffman(){
 		readFromFile("huffman.txt");
@@ -33,11 +33,11 @@ public class Huffman{
 	//Always pulls the 2 smallest nodes and hooks them to a new spacer node
 	//On last node (100%) sets that node to the head of the tree
 	void createTree(){
-		Node left, right, parent;
+		HuffNode left, right, parent;
 		while(nodesRemaining.size() > 1){
 			left = nodesRemaining.poll();
 			right = nodesRemaining.poll();
-			parent = new Node((left.getFreq() + right.getFreq()), left, right);
+			parent = new HuffNode((left.getFreq() + right.getFreq()), left, right);
 			left.setParent(parent);
 			right.setParent(parent);
 			nodesRemaining.add(parent);
@@ -48,22 +48,20 @@ public class Huffman{
 	}
 
 	void setHuffman(Node n){
-		System.out.println("Node " + n.getValue());
 		if(n.getLeft() != null){
 			if(n.equals(head)){
-				n.getLeft().setHuffmanCode("L");
+				n.getLeft().setKey("L");
 			}else{
-				n.getLeft().appeadHuffman("L");
+				n.getLeft().setKey(n.getKey() + "L");
 			}
 			setHuffman(n.getLeft());
 		}
 		if(n.getRight() != null){
 			if(n.equals(head)){
-				n.getRight().setHuffmanCode("R");;
+				n.getRight().setKey("R");;
 			}else{
-				n.getRight().appeadHuffman("R");
+				n.getRight().setKey(n.getKey() + "R");
 			}
-			n.getRight().appeadHuffman("R");
 			setHuffman(n.getRight());
 		}
 	}
@@ -91,12 +89,12 @@ public class Huffman{
 		try{
 			Scanner scan = new Scanner(new File(filename));
 			String line;
-			Node n;
-			nodesRemaining = new PriorityQueue<Node>();
+			HuffNode n;
+			nodesRemaining = new PriorityQueue<HuffNode>();
 			while(scan.hasNext()){
 				line = scan.nextLine();
 				//System.out.println("Read in line \"" + line + "\"");
-				n = new Node(line.substring(0, 2), Double.parseDouble(line.substring(1, line.length())));
+				n = new HuffNode(line.substring(0, 1), Double.parseDouble(line.substring(1, line.length())));
 				nodesRemaining.add(n);
 			}
 		}catch(FileNotFoundException ex){

@@ -8,52 +8,20 @@
 **/
 package graph;
 
-public class Node implements Comparable{
+public abstract class Node{
 
-	String value, huffmanCode;
-	double freq;
+	String value;
 	Node left, right, parent;
 
-	//Constructor for bridging nodes
-	public Node(double i, Node l, Node r){
-		value = " ";
-		huffmanCode = "";
-		freq = i;
-		left = l;
-		right = r;
-	}
-
-	//Constructor for nodes with value
-	public Node(String s, double i){
-		value = s;
-		huffmanCode = "";
-		freq = i;
-	}
 
 	void setParent(Node n){
 		parent = n;
-	}
-
-	void setHuffmanCode(String s){
-		huffmanCode = s;
 	}
 
 	public String getValue(){
 		return value;
 	}
 
-	public String getHuffmanCode(){
-		return huffmanCode;
-	}
-
-	public void appeadHuffman(String s){
-		huffmanCode = parent.getHuffmanCode() + s;
-	}
-
-	public double getFreq(){
-		return freq;
-	}
-	
 	public Node getLeft(){
 		return left;
 	}
@@ -65,36 +33,8 @@ public class Node implements Comparable{
 	public Node getParent(){
 		return parent;
 	}
-	
-	public String toString(){
-		return "(" + value + ", " + freq + ", " + huffmanCode + ")";
-	}
 
-	public int compareTo(Object o){
-		return compareTo((Node) o);
-	}
+	abstract String getKey();
 
-	public int compareTo(Node n){
-		if(this.freq == n.getFreq())
-			return 0;
-		else
-			return this.freq > n.getFreq() ? 1 : -1;
-	}
-	
-	public boolean equals(Object e){
-		if(this == e){
-			return true;	
-		}
-		if(e == null) {
-			return false;
-		}
-		if(getClass() != e.getClass()){
-			return false;
-		}
-		final Node other = (Node) e;
-		if(value == other.getValue() && freq == other.getFreq()){
-			return true;
-		}
-		return false;
-	}
+	abstract void setKey(String s);
 }
