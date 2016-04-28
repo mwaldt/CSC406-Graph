@@ -30,10 +30,12 @@ public abstract class Tree{
 		//System.out.println("Root Node | Left Node | Right Node | frequency | Huffman Code");
 		System.out.println("Print out of the Tree");
 		System.out.println("Tree depth: " + depth);
-		printNode(root);
+		String path = "";
+		printNode(root, path);
 	}
 
-	void printNode(Node n){
+	void printNode(Node n, String s){
+		String str = s;
 		if(n.equals(root)){
 			nodeDepth = 1;
 		}else{
@@ -42,17 +44,20 @@ public abstract class Tree{
 		if(n.printMe()){
 			System.out.println(n.toString());
 			System.out.println("d: " + nodeDepth);
-			//System.out.println("p: " + path);
-			//System.out.println("root is " + root.toString());
-			//n.debug();
-
+			System.out.println("p: "+ str);
+			System.out.println();
 		}
 		if(n.getLeft() != null){
-			printNode(n.getLeft());
+			str = str + "l";
+			printNode(n.getLeft(), str);
 			nodeDepth--;
 		}
 		if(n.getRight() != null){
-			printNode(n.getRight());
+			if(n.equals(root)){
+				str = "";
+			}
+			str = str + "r";
+			printNode(n.getRight(), str);
 			nodeDepth--;
 		}
 	}
@@ -66,27 +71,10 @@ public abstract class Tree{
 	void rr(Node n){
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
-		
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
-		/**/
 
 		//mid to top + rehooking
 		p.setParent(gp.getParent());
 		fixSuperTree(p);
-
-		System.out.println("-----");
-		System.out.println("rr 2");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
-		/**/
 
 		//rehook parents left child to gp
 		gp.setRight(p.getLeft());
@@ -94,29 +82,9 @@ public abstract class Tree{
 		if(gp.getRight() != null)
 			gp.getRight().setParent(gp);
 
-		System.out.println("-----");
-		System.out.println("rr 3");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
-		/**/
-
 		//attach gp
 		p.setLeft(gp);
 		gp.setParent(p);
-			System.out.println("-----");
-		System.out.println("rr 4");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
 	}
 
 	void ll(Node n){
@@ -124,29 +92,9 @@ public abstract class Tree{
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
 
-		System.out.println("-----");
-		System.out.println("ll 1");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
-
 		//mid to top + rehook
 		p.setParent(gp.getParent());
 		fixSuperTree(p);
-		
-		System.out.println("-----");
-		System.out.println("ll 2");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
 
 		//rehook paretnts child to gp
 		gp.setLeft(p.getRight());
@@ -155,91 +103,57 @@ public abstract class Tree{
 			gp.getLeft().setParent(gp);
 		}
 
-		System.out.println("-----");
-		System.out.println("ll 3");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
 		//attach gp
 		p.setRight(gp);
 		gp.setParent(p);
-
-		System.out.println("-----");
-		System.out.println("ll 4");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
-		p.debug();
-		System.out.println("n");
-		n.debug();
-		System.out.println("-----");
 	}
 
 	//-mw debug
 	void lr(Node n){
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
-		System.out.println("lr");
+
 		//n to root
 		n.setParent(gp.getParent());
 		fixSuperTree(n);
-
-		System.out.println("1");
 
 		// move n's left to p's right
 		p.setRight(n.getLeft());
 		if(p.getRight() != null){
 			p.getRight().setParent(p);
 		}
-		System.out.println("2");
 
 		//move p to n' left
 		n.setLeft(p);
 		p.setParent(n);
-
-		System.out.println("3");
 
 		//move n's right node to gp's left
 		gp.setLeft(n.getRight());
 		if(gp.getLeft() != null){
 			gp.getLeft().setParent(gp);	
 		}
-		
-		System.out.println("4");
 
 		//move gp to right of n
 		n.setRight(gp);
 		gp.setParent(n);
-
-		System.out.println("5");
 	}
 
 	void rl(Node n){
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
-		System.out.println("rl");
+
 		//n to root
 		n.setParent(gp.getParent());
 		fixSuperTree(n);
-
-		System.out.println("1");
 
 		// move n's right to p's left
 		p.setLeft(n.getRight());
 		if(p.getLeft() != null){
 			p.getLeft().setParent(p);
 		}
-		System.out.println("2");
-
 		//move p to n' right
 		n.setRight(p);
 		p.setParent(n);
-
-		System.out.println("3");
 
 		//--
 		//move n's left node to gp's right
@@ -247,14 +161,10 @@ public abstract class Tree{
 		if(gp.getRight() != null){
 			gp.getRight().setParent(gp);	
 		}
-		
-		System.out.println("4");
 
 		//move gp to left of n
 		n.setLeft(gp);
 		gp.setParent(n);
-
-		System.out.println("5");
 	}
 
 	//Method to attach a subtree back to the correct positon
