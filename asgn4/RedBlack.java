@@ -43,12 +43,12 @@ public class RedBlack extends Tree{
 			}else{
 				int a = n.compareTo(n.getParent());
 				if(a > 0){
-					//System.out.println("inserting node to right of: "
-					//	+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
+					System.out.println("inserting node to right of: "
+						+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
 					n.getParent().setRight(n);
 				}else if(a < 0){
-					//System.out.println("inserting node to left of: "
-					//	+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
+					System.out.println("inserting node to left of: "
+						+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
 					n.getParent().setLeft(n);
 				}
 				if(nodeDepth == depth){
@@ -67,15 +67,15 @@ public class RedBlack extends Tree{
 		//2 reds in a row
 		if(n.getParent().equals(root)){
 			//System.out.println("parent is root, we are done here");
-		}else if(n.getParent().getKey().equals("red")){
+		}else if(n.getParent().getKey().equals("red") && n.getKey().equals("red")){
 			//System.out.println("redif");
 			if(n.getUncle() == null || n.getUncle().getKey().equals("black")){
-				//System.out.println("\nblack uncle");
+				System.out.println("\nblack uncle");
 				recolorNodes(n);
 				reOrder(n);
 				depth--;
 			}else if(n.getUncle().getKey().equals("red")){
-				//System.out.println("\nred uncle");
+				System.out.println("\nred uncle");
 				recolorNodes(n);
 			}
 			if(n.getGrandParent() != null){
@@ -91,30 +91,45 @@ public class RedBlack extends Tree{
 		//grandparent always changes
 		((RBNode) n.getGrandParent()).switchColor();
 		//red uncle case
-		//System.out.println("recolor triggered by node " + n.toString());
+		System.out.println("recolor triggered by node " + n.toString());
 		if(n.getUncle() != null && n.getUncle().getKey().equals("red")){
+			System.out.println("uncle not null, uncle red -rc");
 			((RBNode) n.getUncle()).switchColor();
 			((RBNode) n.getParent()).switchColor();
 		}else{	//empty or black uncle nodes
 			// r - x rotateions
+			System.out.println("uncle null or black -rc");
 			if(n.compareTo(n.getParent()) > 0){
+				System.out.println("n.compareTo(n.getParent()): " + n.compareTo(n.getParent()));
 				if(n.compareTo(n.getGrandParent()) > 0){
 					//rr
+					System.out.println("n.compareTo(n.getGrandParent()): " + n.compareTo(n.getGrandParent()));
 					((RBNode) n.getParent()).switchColor();
 				}else{
 					//rl, no change to parent
+					System.out.println("less than gp");
 					((RBNode) n).switchColor();
 				}
 			}else{
+				System.out.println("else to n.compareTo(n.getParent()) > 0");
 				if(n.compareTo(n.getGrandParent()) < 0){
 					//ll
+					System.out.println("n.compareTo(n.getGrandParent()): " + n.compareTo(n.getGrandParent()));
 					((RBNode) n.getParent()).switchColor();
 				}else {
 					//lr, no change to parent
+					System.out.println("greater than gp");
 					((RBNode) n).switchColor();
 				}
 			}
 		}
+			System.out.println("Colors:");
+			System.out.println("gp:" + n.getGrandParent().toString());
+			if(n.getUncle() != null){
+				System.out.println("u:" + n.getUncle().toString());	
+			}
+			System.out.println("p:" + n.getParent().toString());
+			System.out.println("n:" + n.toString());
 	}
 
 	//

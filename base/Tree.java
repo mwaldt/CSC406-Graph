@@ -66,11 +66,7 @@ public abstract class Tree{
 	void rr(Node n){
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
-		System.out.println("-----");
-		System.out.println("rr 1");
-		System.out.println("gp");
-		gp.debug();
-		System.out.println("p");
+		
 		p.debug();
 		System.out.println("n");
 		n.debug();
@@ -187,60 +183,78 @@ public abstract class Tree{
 	void lr(Node n){
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
-
+		System.out.println("lr");
 		//n to root
 		n.setParent(gp.getParent());
 		fixSuperTree(n);
 
-		// clear new root right
-		gp.setLeft(n.getRight());
-		gp.getLeft().setParent(gp);
+		System.out.println("1");
 
-		//move gp to roots right
+		// move n's left to p's right
+		p.setRight(n.getLeft());
+		if(p.getRight() != null){
+			p.getRight().setParent(p);
+		}
+		System.out.println("2");
+
+		//move p to n' left
+		n.setLeft(p);
+		p.setParent(n);
+
+		System.out.println("3");
+
+		//move n's right node to gp's left
+		gp.setLeft(n.getRight());
+		if(gp.getLeft() != null){
+			gp.getLeft().setParent(gp);	
+		}
+		
+		System.out.println("4");
+
+		//move gp to right of n
 		n.setRight(gp);
 		gp.setParent(n);
 
-		//clear new roots left
-		p.setRight(n.getLeft());
-		p.getLeft().setParent(p);
-
-		//
-		p.setRight(n.getLeft());
-		p.getRight().setParent(p);
-
-		//move p to new root's right
-		n.setLeft(p);
-		p.setParent(n);
-	
+		System.out.println("5");
 	}
 
 	void rl(Node n){
 		Node gp = n.getGrandParent();
 		Node p = n.getParent();
-
+		System.out.println("rl");
 		//n to root
 		n.setParent(gp.getParent());
 		fixSuperTree(n);
 
-		// clear new root left
-		gp.setRight(n.getLeft());
-		gp.getRight().setParent(gp);
+		System.out.println("1");
 
-		//move gp to roots left
+		// move n's right to p's left
+		p.setLeft(n.getRight());
+		if(p.getLeft() != null){
+			p.getLeft().setParent(p);
+		}
+		System.out.println("2");
+
+		//move p to n' right
+		n.setRight(p);
+		p.setParent(n);
+
+		System.out.println("3");
+
+		//--
+		//move n's left node to gp's right
+		gp.setRight(n.getLeft());
+		if(gp.getRight() != null){
+			gp.getRight().setParent(gp);	
+		}
+		
+		System.out.println("4");
+
+		//move gp to left of n
 		n.setLeft(gp);
 		gp.setParent(n);
 
-		//clear new roots right
-		p.setLeft(n.getRight());
-		p.getLeft().setParent(p);
-
-		//
-		p.setLeft(n.getRight());
-		p.getLeft().setParent(p);
-
-		//move p to new root's right
-		n.setRight(p);
-		p.setParent(n);
+		System.out.println("5");
 	}
 
 	//Method to attach a subtree back to the correct positon
