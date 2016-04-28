@@ -30,35 +30,31 @@ public abstract class Tree{
 		//System.out.println("Root Node | Left Node | Right Node | frequency | Huffman Code");
 		System.out.println("Print out of the Tree");
 		System.out.println("Tree depth: " + depth);
-		String path = "";
-		printNode(root, path);
+		printNode(root);
 	}
 
-	void printNode(Node n, String s){
-		String str = s;
+	void printNode(Node n){
 		if(n.equals(root)){
 			nodeDepth = 1;
+			n.setPath("");
 		}else{
 			nodeDepth++;
+		}
+		if(n.getLeft() != null){
+			n.getLeft().setPath(n.getPath() + "L");
+			printNode(n.getLeft());
+			nodeDepth--;
+		}
+		if(n.getRight() != null){
+			n.getRight().setPath(n.getPath() + "R");
+			printNode(n.getRight());
+			nodeDepth--;
 		}
 		if(n.printMe()){
 			System.out.println(n.toString());
 			System.out.println("d: " + nodeDepth);
-			System.out.println("p: "+ str);
+			System.out.println("p: "+ n.getPath());
 			System.out.println();
-		}
-		if(n.getLeft() != null){
-			str = str + "l";
-			printNode(n.getLeft(), str);
-			nodeDepth--;
-		}
-		if(n.getRight() != null){
-			if(n.equals(root)){
-				str = "";
-			}
-			str = str + "r";
-			printNode(n.getRight(), str);
-			nodeDepth--;
 		}
 	}
 

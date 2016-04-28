@@ -43,28 +43,35 @@ public class Huffman extends Tree{
 		}
 		root = nodesRemaining.poll();
 		System.out.println("Setting up huffman codes");
-		setHuffman(root);
+		//setHuffman(root);
 	}
-
+/*
 	void setHuffman(Node n){
+		if(n.equals(root)){
+			depth = 1;
+			nodeDepth = 1;
+			n.setKey("");
+		}else{
+			nodeDepth++;
+		}
 		if(n.getLeft() != null){
-			if(n.equals(root)){
-				n.getLeft().setKey("L");
-			}else{
-				n.getLeft().setKey(n.getKey() + "L");
+			if(nodeDepth == depth){
+				depth++;
 			}
+			n.getLeft().setKey(n.getKey() + "L");
 			setHuffman(n.getLeft());
+			nodeDepth--;
 		}
 		if(n.getRight() != null){
-			if(n.equals(root)){
-				n.getRight().setKey("R");;
-			}else{
-				n.getRight().setKey(n.getKey() + "R");
+			if(nodeDepth == depth){
+				depth++;
 			}
+			n.getRight().setKey(n.getKey() + "R");
 			setHuffman(n.getRight());
+			nodeDepth--;
 		}
 	}
-
+/**/
 
 	//Reads input from a file, stores nodes in PriorityQueue
 	void readFromFile(String filename){

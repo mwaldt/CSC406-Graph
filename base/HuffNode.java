@@ -23,6 +23,7 @@ public class HuffNode extends Node implements Comparable{
 		freq = i;
 		left = l;
 		right = r;
+		path = "";
 	}
 
 	//Constructor for nodes with value
@@ -31,6 +32,7 @@ public class HuffNode extends Node implements Comparable{
 		print = true;
 		huffmanCode = "";
 		freq = i;
+		path = "";
 	}
 
 	public String getKey(){

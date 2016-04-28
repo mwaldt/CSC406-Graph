@@ -14,6 +14,7 @@ public class RBNode extends Node{
 
 	String color; 
 	double freq;
+	String path;
 
 	//Constructor for bridging nodes
 	public RBNode(String v){
@@ -40,6 +41,14 @@ public class RBNode extends Node{
 	
 	public String toString(){
 		return "(" + value + ", " + color + ")";
+	}
+
+	void setPath(String s){
+		path = s;
+	}
+
+	String getPath(){
+		return path;
 	}
 	
 	public boolean equals(Object e){

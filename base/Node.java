@@ -42,6 +42,14 @@ public abstract class Node{
 	public Node getParent(){
 		return parent;
 	}
+	
+	void setPath(String s){
+		path = s;
+	}
+
+	String getPath(){
+		return path;
+	}
 
 	abstract String getKey();
 
