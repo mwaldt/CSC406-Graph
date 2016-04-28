@@ -19,6 +19,7 @@ public class HuffNode extends Node implements Comparable{
 	public HuffNode(double i, HuffNode l, HuffNode r){
 		huffmanCode = "";
 		value = "#";
+		print = false;
 		freq = i;
 		left = l;
 		right = r;
@@ -27,6 +28,7 @@ public class HuffNode extends Node implements Comparable{
 	//Constructor for nodes with value
 	public HuffNode(String s, double i){
 		value = s;
+		print = true;
 		huffmanCode = "";
 		freq = i;
 	}

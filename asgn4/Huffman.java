@@ -19,10 +19,9 @@ import java.util.*;
 //Project Imports
 import graph.*;
 
-public class Huffman{
+public class Huffman extends Tree{
 
 	PriorityQueue<HuffNode> nodesRemaining;
-	HuffNode head;
 
 	public Huffman(){
 		readFromFile("huffman.txt");
@@ -31,7 +30,7 @@ public class Huffman{
 
 	//Creates the Huffman tree from nodes in the priorityqueue
 	//Always pulls the 2 smallest nodes and hooks them to a new spacer node
-	//On last node (100%) sets that node to the head of the tree
+	//On last node (100%) sets that node to the root of the tree
 	void createTree(){
 		HuffNode left, right, parent;
 		while(nodesRemaining.size() > 1){
@@ -42,14 +41,14 @@ public class Huffman{
 			right.setParent(parent);
 			nodesRemaining.add(parent);
 		}
-		head = nodesRemaining.poll();
+		root = nodesRemaining.poll();
 		System.out.println("Setting up huffman codes");
-		setHuffman(head);
+		setHuffman(root);
 	}
 
 	void setHuffman(Node n){
 		if(n.getLeft() != null){
-			if(n.equals(head)){
+			if(n.equals(root)){
 				n.getLeft().setKey("L");
 			}else{
 				n.getLeft().setKey(n.getKey() + "L");
@@ -57,7 +56,7 @@ public class Huffman{
 			setHuffman(n.getLeft());
 		}
 		if(n.getRight() != null){
-			if(n.equals(head)){
+			if(n.equals(root)){
 				n.getRight().setKey("R");;
 			}else{
 				n.getRight().setKey(n.getKey() + "R");
@@ -66,23 +65,6 @@ public class Huffman{
 		}
 	}
 
-	//Prints out tree
-	// 9 | 11 | 12 | 11 | 
-	void printTree(){
-		//System.out.println("Root Node | Left Node | Right Node | frequency | Huffman Code");
-		System.out.println("Print out of the huffman code");
-		printNode(head);
-	}
-
-	void printNode(Node n){
-		System.out.println(n.toString());
-		if(n.getLeft() != null){
-			printNode(n.getLeft());
-		}
-		if(n.getRight() != null){
-			printNode(n.getRight());
-		}
-	}
 
 	//Reads input from a file, stores nodes in PriorityQueue
 	void readFromFile(String filename){

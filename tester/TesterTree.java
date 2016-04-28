@@ -49,6 +49,13 @@ public class TesterTree extends TesterBase{
 		huffmanCode.printTree();
 
 		System.out.println("\n--------\n");
+
+		//For Huffman Code
+		System.out.println("Creating Red Black Tree");
+		RedBlack rb = new RedBlack();
+		rb.printTree();
+
+		System.out.println("\n--------\n");
 	}
 	
 
