@@ -83,7 +83,7 @@ public abstract class Node{
 			for(int i = s1.length(); i < s2.length(); i ++){
 				s1 = "0"+s1;
 			}
-			System.out.println("Post buffer strings: " + s1 + " : " + s2);
+			//System.out.println("Post buffer strings: " + s1 + " : " + s2);
 		}
 		return s1;
 	}

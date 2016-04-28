@@ -43,12 +43,12 @@ public class RedBlack extends Tree{
 			}else{
 				int a = n.compareTo(n.getParent());
 				if(a > 0){
-					System.out.println("inserting node to right of: "
-						+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
+					//System.out.println("inserting node to right of: "
+					//	+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
 					n.getParent().setRight(n);
 				}else if(a < 0){
-					System.out.println("inserting node to left of: "
-						+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
+					//System.out.println("inserting node to left of: "
+					//	+ n.getParent().toString() +"at parent depth \n" + nodeDepth);
 					n.getParent().setLeft(n);
 				}
 				if(nodeDepth == depth){
@@ -70,16 +70,16 @@ public class RedBlack extends Tree{
 		}else if(n.getParent().getKey().equals("red")){
 			//System.out.println("redif");
 			if(n.getUncle() == null || n.getUncle().getKey().equals("black")){
-				System.out.println("\nblack uncle");
+				//System.out.println("\nblack uncle");
 				recolorNodes(n);
 				reOrder(n);
 				depth--;
 			}else if(n.getUncle().getKey().equals("red")){
-				System.out.println("\nred uncle");
+				//System.out.println("\nred uncle");
 				recolorNodes(n);
 			}
 			if(n.getGrandParent() != null){
-				System.out.println("\ncheck up tree next node\n");
+				//System.out.println("\ncheck up tree next node\n");
 				checkNode((RBNode) n.getParent());
 				nodeDepth--;
 			}
@@ -91,7 +91,7 @@ public class RedBlack extends Tree{
 		//grandparent always changes
 		((RBNode) n.getGrandParent()).switchColor();
 		//red uncle case
-		System.out.println("recolor triggered by node " + n.toString());
+		//System.out.println("recolor triggered by node " + n.toString());
 		if(n.getUncle() != null && n.getUncle().getKey().equals("red")){
 			((RBNode) n.getUncle()).switchColor();
 			((RBNode) n.getParent()).switchColor();
@@ -119,7 +119,7 @@ public class RedBlack extends Tree{
 
 	//
 	void reOrder(RBNode n){
-		System.out.println("Reordering nodes: " + n.toString());
+		//System.out.println("Reordering nodes: " + n.toString());
 		if(n.compareTo(n.getParent()) > 0){
 			if(n.getParent().compareTo(n.getGrandParent()) > 0){
 				//System.out.println("rr");
